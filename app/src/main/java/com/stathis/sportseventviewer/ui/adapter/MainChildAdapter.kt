@@ -4,15 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.stathis.sportseventviewer.abstraction.DiffUtilClass
+import com.stathis.sportseventviewer.callback.SportsClickListener
 import com.stathis.sportseventviewer.databinding.HolderHomeCategoryItemBinding
 import com.stathis.sportseventviewer.databinding.HolderHomeSportsItemBinding
 import com.stathis.sportseventviewer.models.LocalModel
 
-class MainChildAdapter() : ListAdapter<LocalModel, MainChildViewHolder>(DiffUtilClass<LocalModel>()) {
+class MainChildAdapter(val callback : SportsClickListener) : ListAdapter<LocalModel, MainChildViewHolder>(DiffUtilClass<LocalModel>()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainChildViewHolder {
         val view = HolderHomeSportsItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return MainChildViewHolder(view)
+        return MainChildViewHolder(view,callback)
     }
 
     override fun onBindViewHolder(holder: MainChildViewHolder, position: Int) {

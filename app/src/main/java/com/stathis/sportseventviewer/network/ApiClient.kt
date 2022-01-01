@@ -1,21 +1,21 @@
 package com.stathis.sportseventviewer.network
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.stathis.sportseventviewer.dinjection.DaggerApiComponent
 import com.stathis.sportseventviewer.models.ResponseModel
-import com.stathis.sportseventviewer.util.ENDPOINT_URL
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-object ApiClient {
+class ApiClient {
 
-    private val service: Endpoints = Retrofit.Builder().baseUrl(ENDPOINT_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(Endpoints::class.java)
+    @Inject
+    lateinit var service : Endpoints
+
+    init {
+        DaggerApiComponent.create().inject(this)
+    }
 
     fun getSports(data : MutableLiveData<List<ResponseModel>>, error : MutableLiveData<Boolean>) {
         service.getSports().enqueue(object : Callback<List<ResponseModel>>{

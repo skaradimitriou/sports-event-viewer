@@ -1,12 +1,10 @@
 package com.stathis.sportseventviewer.ui
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.view.Menu
 import androidx.lifecycle.ViewModelProvider
 import com.stathis.sportseventviewer.R
 import com.stathis.sportseventviewer.abstraction.AbstractActivity
 import com.stathis.sportseventviewer.databinding.ActivityMainBinding
-import com.stathis.sportseventviewer.network.ApiClient
 
 class MainActivity : AbstractActivity<ActivityMainBinding>(R.layout.activity_main) {
 
@@ -17,6 +15,15 @@ class MainActivity : AbstractActivity<ActivityMainBinding>(R.layout.activity_mai
     }
 
     override fun startOps() {
+
+        /*
+        FIXME: 1.Implement collapse - expand on nested recyclerview
+               2. Implement countdown timer on child items
+               3. Implement add to favorite list.
+         */
+
+        supportActionBar?.title = resources.getString(R.string.screen_title)
+
         binding.homeScreenRecycler.adapter = viewModel.adapter
 
         viewModel.observe(this)
@@ -24,5 +31,10 @@ class MainActivity : AbstractActivity<ActivityMainBinding>(R.layout.activity_mai
 
     override fun stopOps() {
         viewModel.release(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu,menu)
+        return true
     }
 }

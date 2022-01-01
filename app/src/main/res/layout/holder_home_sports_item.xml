@@ -1,25 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
+            name="time"
+            type="String" />
+
+        <variable
             name="model"
             type="com.stathis.sportseventviewer.models.SportsModel" />
+
+        <variable
+            name="callback"
+            type="com.stathis.sportseventviewer.callback.SportsClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="@dimen/width_160"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_10"
+        android:onClick="@{(view) -> callback.onItemTap(view)}"
+        tools:background="@color/grey_dark">
 
         <TextView
-            android:id="@+id/category_title"
+            android:id="@+id/sports_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:padding="@dimen/dimen_10"
-            android:text="@{model.d}"
+            android:text="@{time}"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/dummy_time" />
+
+        <ImageView
+            android:id="@+id/favorite_icon"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_20"
+            android:src="@drawable/ic_star_outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sports_time" />
+
+        <TextView
+            android:id="@+id/sports_player1"
+            player1="@{model.d}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dimen_10"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/favorite_icon"
+            tools:text="@string/player_1" />
+
+        <TextView
+            android:id="@+id/sports_player2"
+            player2="@{model.d}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sports_player1"
+            tools:text="@string/player_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

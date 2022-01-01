@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SportsEventViewer</string>
+
+    <string name="screen_title">Sports Event Viewer</string>
+
+    <string name="menu_profile">Profile</string>
+    <string name="menu_settings">Settings</string>
+    <string name="dummy_time">HH:MM:SS</string>
+    <string name="player_1">player 1</string>
+    <string name="player_2">player 2</string>
 </resources>

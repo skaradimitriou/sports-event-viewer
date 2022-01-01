@@ -6,6 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/grey_dark"
         tools:context=".ui.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -13,9 +14,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingTop="@dimen/dimen_10"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="10"
-            tools:listitem="@layout/holder_home_category_item"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            tools:listitem="@layout/holder_home_category_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

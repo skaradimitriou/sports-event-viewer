@@ -1,10 +1,17 @@
 package com.stathis.sportseventviewer.models
 
+import com.google.gson.annotations.SerializedName
+
 data class ResponseModel(
 
-    val i : String,
-    val d : String,
-    val e : List<SportsModel>
+    @SerializedName("i")
+    val sportId : String,
+
+    @SerializedName("d")
+    val sportName : String,
+
+    @SerializedName("e")
+    val events : List<SportsModel>
 
 ) : LocalModel{
     override fun equalsContent(obj: LocalModel): Boolean {
