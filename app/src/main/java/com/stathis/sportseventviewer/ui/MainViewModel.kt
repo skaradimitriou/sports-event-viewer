@@ -23,8 +23,6 @@ class MainViewModel(app : Application) : AbstractViewModel(app),SportsClickListe
     val adapter by lazy { MainScreenAdapter(this) }
     val success = MutableLiveData<List<ResponseModel>>()
     val error = MutableLiveData<Boolean>()
-    //private var isExpanded = false
-    private var isFavorite = false
 
     init {
         DaggerApiComponent.create().inject(this)
@@ -38,8 +36,6 @@ class MainViewModel(app : Application) : AbstractViewModel(app),SportsClickListe
 
     fun observe(owner: LifecycleOwner){
         success.observe(owner, Observer { list ->
-
-
             Log.d("DATA",list.toString())
             adapter.submitList(list)
         })
@@ -49,27 +45,10 @@ class MainViewModel(app : Application) : AbstractViewModel(app),SportsClickListe
         success.removeObservers(owner)
     }
 
-    private fun checkIfFavorite(model : SportsModel) : Boolean {
-        return false
-
-        addToFavorites(model)
-    }
-
-    private fun addToFavorites(model : SportsModel) {
-        isFavorite = !isFavorite
-    }
-
     override fun onItemTap(view: View) {
         when(view.tag){
-            is ResponseModel -> {
-                changeExpandView()
-            }
-            is SportsModel -> checkIfFavorite(view.tag as SportsModel)
-            else -> changeExpandView()
+            is ResponseModel -> Unit
+            is SportsModel -> Unit
         }
-    }
-
-    private fun changeExpandView() {
-//        adapter.changeExpandMode()
     }
 }

@@ -19,7 +19,8 @@ data class SportsModel(
     @SerializedName("tt")
     val eventStartTime : Long,
 
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
+
 
 ) : LocalModel{
     override fun equalsContent(obj: LocalModel): Boolean = when(obj){

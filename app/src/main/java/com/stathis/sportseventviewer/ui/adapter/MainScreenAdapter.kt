@@ -28,15 +28,13 @@ class MainScreenAdapter(val callback : SportsClickListener) : ListAdapter<LocalM
                 val isExpanded = model.isExpandable
 
                 holder.binding.headerLayout.setOnClickListener {
-
                     model.isExpandable = !isExpanded
                     notifyItemChanged(holder.adapterPosition)
                 }
 
-                holder.binding.categoryRecycler.visibility = View.VISIBLE
-
                 when(model.isExpandable){
                     true -> {
+                        holder.binding.categoryRecycler.visibility = View.VISIBLE
                         holder.binding.categoryArrow.setImageResource(R.drawable.ic_arrow_facing_up)
                     }
                     false -> {
