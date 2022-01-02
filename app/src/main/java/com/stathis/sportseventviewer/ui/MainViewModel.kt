@@ -6,6 +6,7 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import com.stathis.sportseventviewer.abstraction.AbstractViewModel
 import com.stathis.sportseventviewer.callback.SportsClickListener
 import com.stathis.sportseventviewer.dinjection.DaggerApiComponent
@@ -13,6 +14,9 @@ import com.stathis.sportseventviewer.models.ResponseModel
 import com.stathis.sportseventviewer.models.SportsModel
 import com.stathis.sportseventviewer.network.ApiClient
 import com.stathis.sportseventviewer.ui.adapter.MainScreenAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel(app : Application) : AbstractViewModel(app),SportsClickListener {
@@ -31,7 +35,9 @@ class MainViewModel(app : Application) : AbstractViewModel(app),SportsClickListe
     }
 
     fun getData(){
-        api.getSports(success,error)
+        CoroutineScope(Dispatchers.IO).launch {
+            api.getSports(success,error)
+        }
     }
 
     fun observe(owner: LifecycleOwner){

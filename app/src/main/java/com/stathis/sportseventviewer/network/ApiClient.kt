@@ -31,12 +31,12 @@ class ApiClient {
                 response?.forEach {
                     it.isExpandable = true
                 }
-                response?.let { data.value = it }
-                error.value = false
+                response?.let { data.postValue(it) }
+                error.postValue(false)
             }
 
             override fun onFailure(call: Call<List<ResponseModel>>, t: Throwable) {
-                error.value = true
+                error.postValue(true)
             }
         })
     }

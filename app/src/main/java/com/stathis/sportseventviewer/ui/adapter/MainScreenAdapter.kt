@@ -14,7 +14,6 @@ import kotlin.math.exp
 
 class MainScreenAdapter(val callback : SportsClickListener) : ListAdapter<LocalModel,MainScreenViewHolder>(DiffUtilClass<LocalModel>()) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainScreenViewHolder {
         val view = HolderHomeCategoryItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return MainScreenViewHolder(view,callback)

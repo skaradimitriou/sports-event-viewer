@@ -6,7 +6,7 @@ import java.util.*
 
 object TimeHelper {
 
-    fun convertToTime(time : Long) : String{
+    fun convertToTime(time: Long): String {
         val timestamp = Timestamp(time)
         val date = Date(timestamp.time)
 
