@@ -11,55 +11,67 @@
         <variable
             name="adapter"
             type="com.stathis.sportseventviewer.ui.adapter.MainChildAdapter" />
+
+        <variable
+            name="callback"
+            type="com.stathis.sportseventviewer.callback.SportsClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <View
-            android:id="@+id/category_header"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/grey_light"
-            android:padding="@dimen/dimen_10"
-            app:layout_constraintBottom_toBottomOf="@id/category_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/category_title" />
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/category_icon"
-            android:layout_width="@dimen/img_24"
-            android:layout_height="@dimen/img_24"
-            android:layout_marginStart="@dimen/dimen_10"
-            android:src="@drawable/ic_profile_white"
-            app:layout_constraintBottom_toBottomOf="@id/category_header"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/category_header" />
+            <View
+                android:id="@+id/category_header"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/grey_light"
+                android:padding="@dimen/dimen_10"
+                app:layout_constraintBottom_toBottomOf="@id/category_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/category_title" />
 
-        <TextView
-            android:id="@+id/category_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/grey_light"
-            android:padding="@dimen/dimen_10"
-            android:text="@{model.sportName}"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/category_arrow"
-            app:layout_constraintStart_toEndOf="@id/category_icon"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/app_name" />
+            <ImageView
+                android:id="@+id/category_icon"
+                android:layout_width="@dimen/img_24"
+                android:layout_height="@dimen/img_24"
+                android:layout_marginStart="@dimen/dimen_10"
+                android:src="@drawable/ic_profile_white"
+                app:layout_constraintBottom_toBottomOf="@id/category_header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/category_header" />
 
-        <ImageView
-            android:id="@+id/category_arrow"
-            android:layout_width="@dimen/img_24"
-            android:layout_height="@dimen/img_24"
-            android:layout_marginEnd="@dimen/dimen_10"
-            android:src="@drawable/ic_arrow_facing_up"
-            app:layout_constraintBottom_toBottomOf="@id/category_header"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/category_header" />
+            <TextView
+                android:id="@+id/category_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_light"
+                android:padding="@dimen/dimen_10"
+                android:text="@{model.sportName}"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/category_arrow"
+                app:layout_constraintStart_toEndOf="@id/category_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/app_name" />
+
+            <ImageView
+                android:id="@+id/category_arrow"
+                android:layout_width="@dimen/img_24"
+                android:layout_height="@dimen/img_24"
+                android:layout_marginEnd="@dimen/dimen_10"
+                android:src="@drawable/ic_arrow_facing_up"
+                app:layout_constraintBottom_toBottomOf="@id/category_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/category_header" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/category_recycler"
@@ -68,9 +80,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/category_title"
             tools:itemCount="3"
             tools:listitem="@layout/holder_home_sports_item" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

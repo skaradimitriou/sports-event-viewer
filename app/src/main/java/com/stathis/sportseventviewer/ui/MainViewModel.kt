@@ -23,7 +23,7 @@ class MainViewModel(app : Application) : AbstractViewModel(app),SportsClickListe
     val adapter by lazy { MainScreenAdapter(this) }
     val success = MutableLiveData<List<ResponseModel>>()
     val error = MutableLiveData<Boolean>()
-    private var isExpanded = false
+    //private var isExpanded = false
     private var isFavorite = false
 
     init {
@@ -37,9 +37,11 @@ class MainViewModel(app : Application) : AbstractViewModel(app),SportsClickListe
     }
 
     fun observe(owner: LifecycleOwner){
-        success.observe(owner, Observer {
-            Log.d("DATA",it.toString())
-            adapter.submitList(it)
+        success.observe(owner, Observer { list ->
+
+
+            Log.d("DATA",list.toString())
+            adapter.submitList(list)
         })
     }
 
@@ -59,12 +61,15 @@ class MainViewModel(app : Application) : AbstractViewModel(app),SportsClickListe
 
     override fun onItemTap(view: View) {
         when(view.tag){
-            is ResponseModel -> changeExpandView()
+            is ResponseModel -> {
+                changeExpandView()
+            }
             is SportsModel -> checkIfFavorite(view.tag as SportsModel)
+            else -> changeExpandView()
         }
     }
 
     private fun changeExpandView() {
-        //FIXME: Implement expand view
+//        adapter.changeExpandMode()
     }
 }

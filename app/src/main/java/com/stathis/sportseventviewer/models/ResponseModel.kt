@@ -11,10 +11,13 @@ data class ResponseModel(
     val sportName : String,
 
     @SerializedName("e")
-    val events : List<SportsModel>
+    val events : List<SportsModel>,
+
+    var isExpandable: Boolean = true
 
 ) : LocalModel{
-    override fun equalsContent(obj: LocalModel): Boolean {
-        return false
+    override fun equalsContent(obj: LocalModel): Boolean = when(obj){
+        is ResponseModel -> obj.sportId == sportId && sportName == sportName && obj.events == events && obj.isExpandable == isExpandable
+        else -> false
     }
 }

@@ -23,7 +23,15 @@ class ApiClient {
                 call: Call<List<ResponseModel>>,
                 response: Response<List<ResponseModel>>
             ) {
-                response.body()?.let { data.value = it }
+
+                //FIXME: Find a way to set default true value to response model isExpandable
+
+                val response = response.body()
+
+                response?.forEach {
+                    it.isExpandable = true
+                }
+                response?.let { data.value = it }
                 error.value = false
             }
 
